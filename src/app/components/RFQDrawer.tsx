@@ -2,6 +2,11 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 import { WEB3FORMS_ACCESS_KEY } from '@/config/form';
 
+interface RFQDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export function RFQDrawer({ isOpen, onClose }: RFQDrawerProps) {
   const [formData, setFormData] = useState({
     name: '',

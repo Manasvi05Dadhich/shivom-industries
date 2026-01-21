@@ -1,96 +1,112 @@
 import { ArrowRight, Download } from 'lucide-react';
-import { MaskContainer } from './ui/svg-mask-effect';
+import { useEffect, useRef, useState } from 'react';
 
 interface HeroProps {
   onNavigate: (page: string) => void;
 }
 
 export function Hero({ onNavigate }: HeroProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth > 1024);
+  }, []);
+
+  // Subtle cursor light (very restrained)
+  useEffect(() => {
+    if (!isDesktop) return;
+
+    const moveSpotlight = (e: MouseEvent) => {
+      if (!containerRef.current || !spotlightRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      spotlightRef.current.style.transform = `translate(${x - 220}px, ${y - 220}px)`;
+    };
+
+    window.addEventListener('mousemove', moveSpotlight);
+    return () => window.removeEventListener('mousemove', moveSpotlight);
+  }, [isDesktop]);
+
   return (
-    <section className="relative min-h-screen pt-20 bg-[var(--stone-beige)] overflow-hidden">
-      <MaskContainer
-        className="min-h-[calc(100vh-5rem)] w-full"
-        backgroundImage="/header-bg.jpg"
-        revealText={
-          <div className="w-full max-w-[1400px] mx-auto px-8 py-24 md:py-32">
-            <div className="max-w-3xl text-left">
-              <div className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full border border-[var(--warm-grey)]/25 bg-white/80 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--muted-bronze)]" />
-                <span className="text-xs tracking-[0.18em] uppercase text-[var(--deep-charcoal)]/80">
-                  Export-Grade Natural Stone • Rajasthan, India
-                </span>
-              </div>
+    <section
+      ref={containerRef}
+      className="relative min-h-screen overflow-hidden bg-[#E9E2D8]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* BACKGROUND IMAGE */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-[900ms] ease-out"
+        style={{
+          backgroundImage: 'url(/header-bg.jpg)',
+          opacity: isHovered ? 1 : 0.85,
+          filter: isHovered ? 'blur(1.8px)' : 'blur(0px)',
+          transform: isHovered ? 'scale(1.035)' : 'scale(1)',
+        }}
+      />
 
-              <h1 className="font-['Cormorant_Garamond'] text-6xl md:text-7xl leading-[1.03] tracking-[-0.02em] mb-7 text-[var(--deep-charcoal)]">
-                Premium Sandstone,
-                <br />
-                Built for Lasting Architecture.
-              </h1>
+      {/* GRADIENT OVERLAY (EDITORIAL, NOT FLAT) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20" />
 
-              <p className="text-lg md:text-xl text-[var(--warm-grey)] mb-10 max-w-2xl leading-relaxed">
-                Consistent color. Precision calibration. Reliable global logistics. Sandstone supply you can specify with
-                confidence—at scale.
-              </p>
+      {/* CURSOR LIGHT */}
+      {isDesktop && (
+        <div
+          ref={spotlightRef}
+          className="pointer-events-none absolute h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18),transparent_65%)] blur-2xl transition-opacity duration-500"
+          style={{ opacity: isHovered ? 1 : 0 }}
+        />
+      )}
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => onNavigate('Products')}
-                  className="group inline-flex items-center gap-2 rounded-md px-7 py-3.5 bg-[var(--deep-charcoal)] text-white hover:bg-[var(--muted-bronze)] transition-colors"
-                >
-                  <span className="text-sm tracking-wide">Explore Products</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <button className="inline-flex items-center gap-2 rounded-md px-7 py-3.5 border border-[var(--deep-charcoal)]/50 text-[var(--deep-charcoal)] hover:bg-[var(--deep-charcoal)] hover:text-white transition-colors">
-                  <Download className="w-4 h-4" />
-                  <span className="text-sm tracking-wide">Download Catalog</span>
-                </button>
-              </div>
-
-              <div className="mt-14 flex flex-wrap gap-3">
-                {[
-                  { k: '50+ Countries', v: 'Export Network' },
-                  { k: 'Calibrated', v: 'Thickness Control' },
-                  { k: 'Finish Options', v: 'Natural • Honed • Shot-blasted' },
-                ].map((item) => (
-                  <div
-                    key={item.k}
-                    className="rounded-lg border border-[var(--warm-grey)]/20 bg-white/65 backdrop-blur-sm px-5 py-3"
-                  >
-                    <div className="text-sm font-semibold text-[var(--deep-charcoal)]">{item.k}</div>
-                    <div className="text-xs text-[var(--warm-grey)] mt-0.5">{item.v}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-16 text-xs tracking-[0.18em] uppercase text-[var(--warm-grey)]">
-                Scroll to discover products & applications
-              </div>
-            </div>
+      {/* CONTENT */}
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-8">
+        <div className="max-w-3xl text-white">
+          {/* EYEBROW */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#D6B77C]" />
+            <span className="text-xs uppercase tracking-[0.18em] text-white/85">
+              Export-Grade Natural Stone · Rajasthan
+            </span>
           </div>
-        }
-      >
-        <div className="max-w-3xl">
-          <h2 className="font-['Cormorant_Garamond'] text-5xl md:text-6xl leading-[1.05] mb-8 text-white drop-shadow-lg whitespace-nowrap">
-            Timeless Stone. Modern Delivery.
-          </h2>
 
-          <div className="flex flex-wrap items-center gap-4">
+          {/* HEADLINE */}
+          <h1 className="font-['Playfair_Display'] text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-tight">
+            Premium Sandstone,
+            <br />
+            <span className="text-[#F4EFE7] drop-shadow-[0_3px_14px_rgba(0,0,0,0.5)]">
+              Designed for Architecture.
+            </span>
+          </h1>
+
+          {/* SUBTEXT */}
+          <p className="mt-8 max-w-xl text-lg text-white/80 leading-relaxed">
+            Consistent color. Precision calibration. Reliable global logistics.
+            Trusted by architects and builders worldwide.
+          </p>
+
+          {/* CTA */}
+          <div className="mt-12 flex flex-wrap gap-4">
             <button
               onClick={() => onNavigate('Products')}
-              className="group inline-flex items-center gap-2 rounded-md px-7 py-3.5 bg-white text-[var(--deep-charcoal)] hover:bg-[var(--muted-bronze)] hover:text-white transition-colors"
+              className="group inline-flex items-center gap-2 rounded-md bg-[#F4EFE7] px-8 py-3.5 text-sm font-medium text-[#2B2B2B] transition-all hover:bg-[#D6B77C] hover:text-black"
             >
-              <span className="text-sm tracking-wide">Explore Products</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Explore Products
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
-            <button className="inline-flex items-center gap-2 rounded-md px-7 py-3.5 border border-white/60 text-white hover:bg-white hover:text-[var(--deep-charcoal)] transition-colors">
-              <Download className="w-4 h-4" />
-              <span className="text-sm tracking-wide">Download Catalog</span>
+
+            <button className="inline-flex items-center gap-2 rounded-md border border-white/60 px-8 py-3.5 text-sm text-white transition-all hover:bg-white hover:text-[#2B2B2B]">
+              <Download className="h-4 w-4" />
+              Download Catalog
             </button>
           </div>
         </div>
-      </MaskContainer>
+      </div>
     </section>
   );
 }
