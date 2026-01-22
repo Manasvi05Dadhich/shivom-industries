@@ -11,12 +11,15 @@ export function Hero({ onNavigate }: HeroProps) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
+  // Detect desktop
   useEffect(() => {
     setIsDesktop(window.innerWidth > 1024);
+    setMounted(true);
   }, []);
 
-  // Subtle cursor light (very restrained)
+  // Cursor light
   useEffect(() => {
     if (!isDesktop) return;
 
@@ -52,7 +55,7 @@ export function Hero({ onNavigate }: HeroProps) {
         }}
       />
 
-      {/* GRADIENT OVERLAY (EDITORIAL, NOT FLAT) */}
+      {/* GRADIENT OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20" />
 
       {/* CURSOR LIGHT */}
@@ -65,10 +68,15 @@ export function Hero({ onNavigate }: HeroProps) {
       )}
 
       {/* CONTENT */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-8">
-        <div className="max-w-3xl text-white">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-8">
+        <div className="max-w-3xl text-center text-white">
           {/* EYEBROW */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-sm">
+          <div
+            className={`mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-sm transition-all duration-700 ease-out
+              ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+            `}
+            style={{ transitionDelay: '100ms' }}
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-[#D6B77C]" />
             <span className="text-xs uppercase tracking-[0.18em] text-white/85">
               Export-Grade Natural Stone · Rajasthan
@@ -76,25 +84,35 @@ export function Hero({ onNavigate }: HeroProps) {
           </div>
 
           {/* HEADLINE */}
-          <h1 className="font-['Playfair_Display'] text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-tight">
-            Premium Sandstone,
-            <br />
-            <span className="text-[#F4EFE7] drop-shadow-[0_3px_14px_rgba(0,0,0,0.5)]">
-              Designed for Architecture.
-            </span>
+          <h1
+            className={`font-['Playfair_Display'] text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-tight transition-all duration-700 ease-out
+              ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+            `}
+            style={{ transitionDelay: '200ms' }}
+          >
+            Shiv Om Industries
           </h1>
 
           {/* SUBTEXT */}
-          <p className="mt-8 max-w-xl text-lg text-white/80 leading-relaxed">
-            Consistent color. Precision calibration. Reliable global logistics.
-            Trusted by architects and builders worldwide.
+          <p
+            className={`mt-8 max-w-xl mx-auto text-lg text-white/80 leading-relaxed transition-all duration-700 ease-out
+              ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+            `}
+            style={{ transitionDelay: '350ms' }}
+          >
+            Premium Sandstone for Contemporary Architecture
           </p>
 
           {/* CTA */}
-          <div className="mt-12 flex flex-wrap gap-4">
+          <div
+            className={`mt-12 flex flex-wrap justify-center gap-4 transition-all duration-700 ease-out
+              ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+            `}
+            style={{ transitionDelay: '500ms' }}
+          >
             <button
               onClick={() => onNavigate('Products')}
-              className="group inline-flex items-center gap-2 rounded-md bg-[#F4EFE7] px-8 py-3.5 text-sm font-medium text-[#2B2B2B] transition-all hover:bg-[#D6B77C] hover:text-black"
+              className="group inline-flex items-center gap-2 rounded-md bg-[#F4EFE7] px-8 py-3.5 text-sm font-medium text-[#2B2B2B] transition-all hover:bg-[#D6B77C]"
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

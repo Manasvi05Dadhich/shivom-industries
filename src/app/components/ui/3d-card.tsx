@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/app/components/ui/utils";
 import React, {
   createContext,
