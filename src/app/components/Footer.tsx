@@ -1,8 +1,9 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import { forwardRef } from "react";
 
-export function Footer() {
+export const Footer = forwardRef<HTMLElement>((props, ref) => {
   return (
-    <footer className="bg-[var(--deep-charcoal)] text-white">
+    <footer ref={ref} className="bg-[var(--deep-charcoal)] text-white">
       <div className="max-w-[1600px] mx-auto px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company info */}
@@ -145,4 +146,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+});

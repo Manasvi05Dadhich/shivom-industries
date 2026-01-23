@@ -48,7 +48,7 @@ export function Hero({ onNavigate }: HeroProps) {
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-[900ms] ease-out"
         style={{
-          backgroundImage: 'url(/header-bg.jpg)',
+          backgroundImage: 'url(/gemini.png)',
           opacity: isHovered ? 1 : 0.85,
           filter: isHovered ? 'blur(1.8px)' : 'blur(0px)',
           transform: isHovered ? 'scale(1.035)' : 'scale(1)',

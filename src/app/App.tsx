@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MessageSquare } from 'lucide-react';
 import { Header } from '@/app/components/Header';
 import { Hero } from '@/app/components/Hero';
@@ -17,11 +17,35 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('Home');
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [isRFQOpen, setIsRFQOpen] = useState(false);
-
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
 
   // Scroll to top when page changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage, selectedProduct]);
+
+  // Check if footer is visible
+  useEffect(() => {
+    const checkFooterVisibility = () => {
+      if (!footerRef.current) return;
+      
+      const rect = footerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Hide button when footer top is within 200px of viewport bottom
+      // This gives a buffer so button disappears before footer fully enters
+      setIsFooterVisible(rect.top < windowHeight - 200);
+    };
+
+    window.addEventListener('scroll', checkFooterVisibility);
+    window.addEventListener('resize', checkFooterVisibility);
+    checkFooterVisibility(); // Check on mount
+
+    return () => {
+      window.removeEventListener('scroll', checkFooterVisibility);
+      window.removeEventListener('resize', checkFooterVisibility);
+    };
   }, [currentPage, selectedProduct]);
 
 
@@ -76,16 +100,18 @@ export default function App() {
         </>
       )}
 
-      <Footer />
+      <Footer ref={footerRef} />
 
-      {/* Sticky RFQ button */}
-      <button
-        onClick={() => setIsRFQOpen(true)}
-        className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-colors shadow-lg z-40"
-      >
-        <MessageSquare className="w-5 h-5" />
-        <span className="hidden md:inline">Request Quote</span>
-      </button>
+      {/* Sticky RFQ button - hidden when footer is visible */}
+      {!isFooterVisible && (
+        <button
+          onClick={() => setIsRFQOpen(true)}
+          className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-all shadow-lg z-40"
+        >
+          <MessageSquare className="w-5 h-5" />
+          <span className="hidden md:inline">Request Quote</span>
+        </button>
+      )}
 
 
 

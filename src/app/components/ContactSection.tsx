@@ -7,7 +7,7 @@ export function ContactSection() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -26,7 +26,7 @@ export function ContactSection() {
         },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: formData.subject,
+          subject: formData.subject || 'Contact form message',
           from_name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -38,9 +38,7 @@ export function ContactSection() {
       if (result.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => {
-          setSubmitStatus('idle');
-        }, 3000);
+        setTimeout(() => setSubmitStatus('idle'), 3000);
       } else {
         setSubmitStatus('error');
       }
@@ -74,8 +72,14 @@ export function ContactSection() {
           <div className="space-y-6">
             <ContactCard
               icon={<MapPin className="w-5 h-5" />}
-              title="Address"
-              content={['Rajasthan, India', 'Premium Stone Processing Zone']}
+              title="Factory Address"
+              content={[
+                'RIICO Industrial Area, Plot No. F7(A), Bigod, Dist. Bhilwara-311601, Rajasthan, India',
+                <>
+                  <span className="font-semibold text-black">Branch Address:</span>{' '}
+                  <span className="text-[var(--warm-grey)]">Kesarganj chouraha , Four Lane, Bijoliya, Dist. Bhilwara-311602 Rajasthan, India</span>
+                </>,
+              ]}
             />
             <ContactCard
               icon={<Mail className="w-5 h-5" />}
@@ -85,7 +89,7 @@ export function ContactSection() {
             <ContactCard
               icon={<Phone className="w-5 h-5" />}
               title="Phone"
-              content={['+91 XXXXX XXXXX', 'Mon-Sat: 9:00 AM - 6:00 PM IST']}
+              content={['+91 9928764042', 'Mon-Sat: 9:00 AM - 6:00 PM IST']}
             />
           </div>
 
@@ -170,11 +174,11 @@ export function ContactSection() {
 function ContactCard({
   icon,
   title,
-  content
+  content,
 }: {
   icon: React.ReactNode;
   title: string;
-  content: string[];
+  content: React.ReactNode[];
 }) {
   return (
     <div className="bg-white p-6 border border-[var(--warm-grey)]/20">
@@ -184,8 +188,12 @@ function ContactCard({
       </div>
       <div className="space-y-1">
         {content.map((line, idx) => (
-          <p key={idx} className="text-sm text-[var(--warm-grey)]">
-            {line}
+          <p key={idx} className="text-sm">
+            {typeof line === 'string' ? (
+              <span className="text-[var(--warm-grey)]">{line}</span>
+            ) : (
+              line
+            )}
           </p>
         ))}
       </div>
