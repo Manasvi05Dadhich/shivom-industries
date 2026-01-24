@@ -1,7 +1,7 @@
 
   # SHIV OM industries website
 
-  ## Running the code
+  ## To run code
 
   Run `npm i` to install the dependencies.
 
