@@ -1,5 +1,5 @@
 
-  # SHIV OM industries WEBSITE
+  # SHIV OM industries website
 
   ## Running the code
 
