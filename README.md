@@ -1,5 +1,5 @@
 
-  # B2B Natural Stone Website UI
+  # SHIV OM industries WEBSITE
 
   ## Running the code
 
