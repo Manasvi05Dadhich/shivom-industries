@@ -1,14 +1,14 @@
 import React from 'react';
 import { cn } from '@/app/components/ui/utils';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import { Download } from 'lucide-react';
 
-const InfoIcon = ({ type }: { type: 'website' | 'phone' | 'address' }) => {
+const InfoIcon = ({ type }: { type: 'maps' | 'phone' | 'address' }) => {
   const icons = {
-    website: (
+    maps: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="2" x2="22" y1="12" y2="12"></line>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
       </svg>
     ),
     phone: (
@@ -26,7 +26,8 @@ const InfoIcon = ({ type }: { type: 'website' | 'phone' | 'address' }) => {
   return <div className="mr-2 flex-shrink-0">{icons[type]}</div>;
 };
 
-interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+interface HeroSectionProps {
+  className?: string;
   logo?: {
     url: string;
     alt: string;
@@ -39,17 +40,21 @@ interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
     text: string;
     href: string;
   };
+  downloadCatalog?: {
+    text?: string;
+    href: string;
+  };
   backgroundImage: string;
   contactInfo: {
-    website: string;
+    mapsLocation?: string;
     phone: string;
     address: string;
   };
 }
 
 const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
-  ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, ...props }, ref) => {
-    const containerVariants = {
+  ({ className, logo, slogan, title, subtitle, callToAction, downloadCatalog, backgroundImage, contactInfo }, ref) => {
+    const containerVariants: Variants = {
       hidden: { opacity: 0 },
       visible: {
         opacity: 1,
@@ -60,7 +65,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
       hidden: { y: 30, opacity: 0 },
       visible: {
         y: 0,
@@ -82,7 +87,6 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        {...props}
       >
         {/* Left: Content */}
         <div className="flex w-full flex-col justify-between p-10 md:w-1/2 md:p-16 lg:w-3/5 lg:p-20 xl:p-24">
@@ -104,33 +108,51 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                 {title}
               </motion.h1>
               <motion.div className="my-8 h-1.5 w-24 bg-gradient-to-r from-[var(--rich-cerulean)] to-[var(--icy-blue)]" variants={itemVariants} />
-              <motion.p className="mb-10 max-w-lg text-lg leading-relaxed text-muted-foreground" variants={itemVariants}>
+              <motion.p className="mb-12 max-w-lg text-lg leading-relaxed text-muted-foreground" variants={itemVariants}>
                 {subtitle}
               </motion.p>
-              <motion.a
-                href={callToAction.href}
-                className="group inline-flex items-center gap-3 text-xl font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-[var(--rich-cerulean)] hover:gap-4"
-                variants={itemVariants}
-              >
-                <span className="relative">
-                  {callToAction.text}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--rich-cerulean)] transition-all duration-300 group-hover:w-full"></span>
-                </span>
-                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </motion.a>
+              <div className="flex flex-wrap items-center gap-6">
+                <motion.a
+                  href={callToAction.href}
+                  className="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--deep-charcoal)] text-white hover:bg-[var(--rich-cerulean)] transition-all duration-300 rounded-xl font-semibold text-base shadow-[0_8px_24px_rgba(23,39,64,0.25)] hover:shadow-[0_12px_32px_rgba(46,95,138,0.35)] hover:scale-[1.02]"
+                  variants={itemVariants}
+                >
+                  <span>{callToAction.text}</span>
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </motion.a>
+                
+                {downloadCatalog && (
+                  <motion.a
+                    href={downloadCatalog.href}
+                    download
+                    className="group inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-[var(--deep-charcoal)]/20 text-[var(--deep-charcoal)] hover:bg-[var(--stone-light)] hover:border-[var(--rich-cerulean)]/40 transition-all duration-300 rounded-xl font-semibold text-base shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(23,39,64,0.15)] hover:scale-[1.02]"
+                    variants={itemVariants}
+                  >
+                    <Download className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                    <span>{downloadCatalog.text || 'Download Catalog'}</span>
+                  </motion.a>
+                )}
+              </div>
             </motion.main>
           </div>
 
           <motion.footer className="mt-16 w-full" variants={itemVariants}>
             <div className="grid grid-cols-1 gap-8 text-sm text-muted-foreground sm:grid-cols-3">
-              <div className="flex items-center group">
-                <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
-                  <InfoIcon type="website" />
-                </div>
-                <span className="transition-colors duration-300 group-hover:text-foreground">{contactInfo.website}</span>
-              </div>
+              {contactInfo.mapsLocation && (
+                <a
+                  href={contactInfo.mapsLocation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center group"
+                >
+                  <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
+                    <InfoIcon type="maps" />
+                  </div>
+                  <span className="transition-colors duration-300 group-hover:text-foreground">View on Maps</span>
+                </a>
+              )}
               <div className="flex items-center group">
                 <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
                   <InfoIcon type="phone" />

@@ -3,8 +3,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 export function Footer() {
   return (
     <footer className="bg-[var(--deep-charcoal)] text-white">
-      <div className="max-w-[1800px] mx-auto pl-8 pr-24 md:pr-44 pt-20 pb-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-16">
+      <div className="max-w-[1800px] mx-auto px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company info */}
           <div>
             <h3 className="font-['Cormorant_Garamond'] text-3xl md:text-4xl mb-6 leading-tight">
@@ -89,7 +89,7 @@ export function Footer() {
             <ul className="space-y-4 text-base text-white/70">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[var(--muted-bronze)]" />
-                <span>Rajasthan, India</span>
+                <span>RIICO Industrial Area, Plot No. F7(A), Bigod, Dist. Bhilwara-311601, Rajasthan, India</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-[var(--muted-bronze)]" />
@@ -106,16 +106,16 @@ export function Footer() {
                   href="tel:+91"
                   className="hover:text-white transition-colors duration-300"
                 >
-                  +91 8302732663
+                  +91 9928764042
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar - extra right padding so sticky Request Quote doesn't cover links */}
-        <div className="pt-10 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-base text-white/50">
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
             <div>
               &copy; 2026 Shiv Om Industries. All rights
               reserved.

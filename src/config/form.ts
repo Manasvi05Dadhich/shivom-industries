@@ -12,4 +12,3 @@
  */
 
 export const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
-
