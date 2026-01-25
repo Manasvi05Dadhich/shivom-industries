@@ -76,8 +76,8 @@ export function ContactSection() {
               content={[
                 'RIICO Industrial Area, Plot No. F7(A), Bigod, Dist. Bhilwara-311601, Rajasthan, India',
                 <>
-                  <span className="font-semibold text-black">Branch Address:</span>{' '}
-                  <span className="text-[var(--warm-grey)]">Kesarganj chouraha , Four Lane, Bijoliya, Dist. Bhilwara-311602 Rajasthan, India</span>
+                  <span className="font-semibold text-[var(--black)]">Branch Address:</span>{' '}
+                  Kesarganj chouraha , Four Lane, Bijoliya, Dist. Bhilwara-311602 Rajasthan, India
                 </>,
               ]}
             />
@@ -188,12 +188,8 @@ function ContactCard({
       </div>
       <div className="space-y-1">
         {content.map((line, idx) => (
-          <p key={idx} className="text-sm">
-            {typeof line === 'string' ? (
-              <span className="text-[var(--warm-grey)]">{line}</span>
-            ) : (
-              line
-            )}
+          <p key={idx} className="text-sm text-[var(--warm-grey)]">
+            {line}
           </p>
         ))}
       </div>

@@ -1,10 +1,9 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-import { forwardRef } from "react";
 
-export const Footer = forwardRef<HTMLElement>((props, ref) => {
+export function Footer() {
   return (
-    <footer ref={ref} className="bg-[var(--deep-charcoal)] text-white">
-      <div className="max-w-[1600px] mx-auto px-8 py-16">
+    <footer className="bg-[var(--deep-charcoal)] text-white">
+      <div className="max-w-[1600px] mx-auto pl-8 pr-24 md:pr-44 pt-16 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company info */}
           <div>
@@ -114,7 +113,7 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom bar - extra right padding so sticky Request Quote doesn't cover links */}
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
             <div>
@@ -146,4 +145,4 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
       </div>
     </footer>
   );
-});
+}

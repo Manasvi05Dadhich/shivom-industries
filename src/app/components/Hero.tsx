@@ -40,7 +40,7 @@ export function Hero({ onNavigate }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-[#E9E2D8]"
+      className="relative min-h-screen overflow-hidden bg-[var(--prussian-blue)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -56,7 +56,7 @@ export function Hero({ onNavigate }: HeroProps) {
       />
 
       {/* GRADIENT OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--prussian-blue)]/85 via-[var(--yale-blue)]/50 to-[var(--prussian-blue)]/10" />
 
       {/* CURSOR LIGHT */}
       {isDesktop && (
@@ -77,7 +77,7 @@ export function Hero({ onNavigate }: HeroProps) {
             `}
             style={{ transitionDelay: '100ms' }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#D6B77C]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--rich-cerulean)]" />
             <span className="text-xs uppercase tracking-[0.18em] text-white/85">
               Export-Grade Natural Stone · Rajasthan
             </span>
@@ -112,13 +112,13 @@ export function Hero({ onNavigate }: HeroProps) {
           >
             <button
               onClick={() => onNavigate('Products')}
-              className="group inline-flex items-center gap-2 rounded-md bg-[#F4EFE7] px-8 py-3.5 text-sm font-medium text-[#2B2B2B] transition-all hover:bg-[#D6B77C]"
+              className="group inline-flex items-center gap-2 rounded-md bg-[var(--palette-white)] px-8 py-3.5 text-sm font-medium text-[var(--prussian-blue)] transition-all hover:bg-[var(--rich-cerulean)] hover:text-white"
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
 
-            <button className="inline-flex items-center gap-2 rounded-md border border-white/60 px-8 py-3.5 text-sm text-white transition-all hover:bg-white hover:text-[#2B2B2B]">
+            <button className="inline-flex items-center gap-2 rounded-md border border-white/60 px-8 py-3.5 text-sm text-white transition-all hover:bg-[var(--palette-white)] hover:text-[var(--prussian-blue)]">
               <Download className="h-4 w-4" />
               Download Catalog
             </button>

@@ -22,7 +22,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   }, []);
 
   const isHome = currentPage === 'Home';
-  const showHeroStyle = isHome && isAtTop;
+  const showHeroStyle = false;
 
   const navItems = [
     { label: 'Home', page: 'Home' },
@@ -41,7 +41,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
-        showHeroStyle ? 'bg-transparent border-white/10 backdrop-blur-sm' : 'bg-[#111827] border-transparent shadow-sm'
+        showHeroStyle ? 'bg-transparent border-white/10 backdrop-blur-sm' : 'bg-[var(--prussian-blue)] border-transparent shadow-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,8 +66,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 onClick={() => onNavigate(item.page)}
                 className={`px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-colors ${
                   currentPage === item.page
-                    ? 'text-[#D6B77C] border-[#D6B77C]'
-                    : 'text-white hover:text-gray-200'
+                    ? 'text-[var(--rich-cerulean)] border-[var(--rich-cerulean)]'
+                    : 'text-white hover:text-[var(--icy-blue)]'
                 }`}
               >
                 {item.label}
@@ -107,8 +107,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   }}
                   className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors ${
                     currentPage === item.page
-                      ? 'text-[#D6B77C] bg-gray-50'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'text-[var(--rich-cerulean)] bg-[var(--stone-light)]'
+                      : 'text-[var(--yale-blue)] hover:text-[var(--prussian-blue)] hover:bg-[var(--stone-light)]'
                   }`}
                 >
                   {item.label}

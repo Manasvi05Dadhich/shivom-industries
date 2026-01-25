@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageSquare } from 'lucide-react';
 import { Header } from '@/app/components/Header';
-import { Hero } from '@/app/components/Hero';
+import { HeroSection } from '@/app/components/ui/hero-section-2';
 import { ProductGrid } from '@/app/components/ProductGrid';
-import { ProductDetail } from '@/app/components/ProductDetail';
+import { ProductRangePage } from '@/app/components/ProductRangePage';
+import { ProductInRangeDetail } from '@/app/components/ProductInRangeDetail';
 import { ApplicationsSection } from '@/app/components/ApplicationsSection';
 import { ExportSection } from '@/app/components/ExportSection';
 import { AboutSection } from '@/app/components/AboutSection';
@@ -15,80 +16,77 @@ type Page = 'Home' | 'Products' | 'Applications' | 'Export' | 'About' | 'Contact
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('Home');
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [selectedRangeId, setSelectedRangeId] = useState<string | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isRFQOpen, setIsRFQOpen] = useState(false);
-  const [isFooterVisible, setIsFooterVisible] = useState(false);
-  const footerRef = useRef<HTMLElement>(null);
 
-  // Scroll to top when page changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage, selectedProduct]);
-
-  // Check if footer is visible
-  useEffect(() => {
-    const checkFooterVisibility = () => {
-      if (!footerRef.current) return;
-      
-      const rect = footerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Hide button when footer top is within 200px of viewport bottom
-      // This gives a buffer so button disappears before footer fully enters
-      setIsFooterVisible(rect.top < windowHeight - 200);
-    };
-
-    window.addEventListener('scroll', checkFooterVisibility);
-    window.addEventListener('resize', checkFooterVisibility);
-    checkFooterVisibility(); // Check on mount
-
-    return () => {
-      window.removeEventListener('scroll', checkFooterVisibility);
-      window.removeEventListener('resize', checkFooterVisibility);
-    };
-  }, [currentPage, selectedProduct]);
-
-
+  }, [currentPage, selectedRangeId, selectedProductId]);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page);
-    setSelectedProduct(null);
+    setSelectedRangeId(null);
+    setSelectedProductId(null);
   };
 
-  const handleSelectProduct = (productId: string) => {
-    setSelectedProduct(productId);
+  const handleSelectRange = (rangeId: string) => {
+    setSelectedRangeId(rangeId);
     setCurrentPage('Products');
   };
 
-  const handleBackToProducts = () => {
-    setSelectedProduct(null);
+  const handleBackFromRange = () => {
+    setSelectedRangeId(null);
+    setSelectedProductId(null);
   };
-
-
 
   return (
     <div className="min-h-screen">
       <Header currentPage={currentPage} onNavigate={handleNavigate} />
 
       {/* Page content */}
-      {selectedProduct ? (
-        <ProductDetail
-          productId={selectedProduct}
-          onBack={handleBackToProducts}
+      {selectedRangeId && selectedProductId ? (
+        <ProductInRangeDetail
+          rangeId={selectedRangeId}
+          productId={selectedProductId}
+          onBack={() => setSelectedProductId(null)}
           onOpenRFQ={() => setIsRFQOpen(true)}
+        />
+      ) : selectedRangeId ? (
+        <ProductRangePage
+          rangeId={selectedRangeId}
+          onBack={handleBackFromRange}
+          onSelectProduct={(id) => setSelectedProductId(id)}
         />
       ) : (
         <>
           {currentPage === 'Home' && (
             <>
-              <Hero onNavigate={handleNavigate} />
-              <ProductGrid onSelectProduct={handleSelectProduct} />
+              <HeroSection
+                slogan="EXPORT-GRADE NATURAL STONE · RAJASTHAN"
+                title={
+                  <>
+                    Premium Sandstone
+                    <br />
+                    <span className="text-primary">for Contemporary Architecture</span>
+                  </>
+                }
+                subtitle="Discover our range of architectural-grade sandstone sourced from Rajasthan. Trusted by architects and contractors worldwide."
+                callToAction={{ text: 'EXPLORE PRODUCTS', href: '#products' }}
+                backgroundImage="/gemini.png"
+                contactInfo={{
+                  website: 'shivomindustries.com',
+                  phone: '+91 9928764042',
+                  address: 'Bhilwara, Rajasthan, India',
+                }}
+              />
+              <ProductGrid onSelectRange={handleSelectRange} />
               <ApplicationsSection />
               <ExportSection />
             </>
           )}
 
-          {currentPage === 'Products' && <ProductGrid onSelectProduct={handleSelectProduct} />}
+          {currentPage === 'Products' && <ProductGrid onSelectRange={handleSelectRange} />}
 
           {currentPage === 'Applications' && <ApplicationsSection />}
 
@@ -100,22 +98,16 @@ export default function App() {
         </>
       )}
 
-      <Footer ref={footerRef} />
+      <Footer />
 
-      {/* Sticky RFQ button - hidden when footer is visible */}
-      {!isFooterVisible && (
-        <button
-          onClick={() => setIsRFQOpen(true)}
-          className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-all shadow-lg z-40"
-        >
-          <MessageSquare className="w-5 h-5" />
-          <span className="hidden md:inline">Request Quote</span>
-        </button>
-      )}
+      <button
+        onClick={() => setIsRFQOpen(true)}
+        className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-colors shadow-lg z-40"
+      >
+        <MessageSquare className="w-5 h-5" />
+        <span className="hidden md:inline">Request Quote</span>
+      </button>
 
-
-
-      {/* RFQ Drawer */}
       <RFQDrawer isOpen={isRFQOpen} onClose={() => setIsRFQOpen(false)} />
     </div>
   );

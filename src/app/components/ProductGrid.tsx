@@ -2,12 +2,12 @@ import { products } from '@/app/data/products';
 import { CardBody, CardContainer, CardItem } from '@/app/components/ui/3d-card';
 
 interface ProductGridProps {
-  onSelectProduct: (productId: string) => void;
+  onSelectRange: (rangeId: string) => void;
 }
 
-export function ProductGrid({ onSelectProduct }: ProductGridProps) {
+export function ProductGrid({ onSelectRange }: ProductGridProps) {
   return (
-    <section className="py-24 px-8 bg-white">
+    <section id="products" className="py-24 px-8 bg-white">
       <div className="max-w-[1600px] mx-auto">
         {/* Section header */}
         <div className="mb-16">
@@ -68,7 +68,7 @@ export function ProductGrid({ onSelectProduct }: ProductGridProps) {
                     <CardItem
                       translateZ={20}
                       as="button"
-                      onClick={() => onSelectProduct(product.id)}
+                      onClick={() => onSelectRange(product.id)}
                       className="px-4 py-2 border border-[var(--deep-charcoal)] text-[var(--deep-charcoal)] hover:bg-[var(--deep-charcoal)] hover:text-white transition-colors text-sm"
                     >
                       View Details →
