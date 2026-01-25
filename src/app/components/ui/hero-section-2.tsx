@@ -61,13 +61,13 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
     };
 
     const itemVariants = {
-      hidden: { y: 20, opacity: 0 },
+      hidden: { y: 30, opacity: 0 },
       visible: {
         y: 0,
         opacity: 1,
         transition: {
-          duration: 0.5,
-          ease: 'easeOut',
+          duration: 0.7,
+          ease: [0.25, 0.1, 0.25, 1],
         },
       },
     };
@@ -85,64 +85,78 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         {...props}
       >
         {/* Left: Content */}
-        <div className="flex w-full flex-col justify-between p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
+        <div className="flex w-full flex-col justify-between p-10 md:w-1/2 md:p-16 lg:w-3/5 lg:p-20 xl:p-24">
           <div>
-            <motion.header className="mb-12" variants={itemVariants}>
+            <motion.header className="mb-16" variants={itemVariants}>
               {logo && (
                 <div className="flex items-center">
-                  <img src={logo.url} alt={logo.alt} className="mr-3 h-8 object-contain" />
+                  <img src={logo.url} alt={logo.alt} className="mr-3 h-10 object-contain" />
                   <div>
-                    {logo.text && <p className="text-lg font-bold text-foreground">{logo.text}</p>}
-                    {slogan && <p className="text-xs tracking-wider text-muted-foreground">{slogan}</p>}
+                    {logo.text && <p className="text-xl font-bold text-foreground">{logo.text}</p>}
+                    {slogan && <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">{slogan}</p>}
                   </div>
                 </div>
               )}
             </motion.header>
 
             <motion.main variants={containerVariants}>
-              <motion.h1 className="text-4xl font-bold leading-tight text-foreground md:text-5xl" variants={itemVariants}>
+              <motion.h1 className="text-5xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl lg:text-7xl xl:text-8xl mb-8" variants={itemVariants}>
                 {title}
               </motion.h1>
-              <motion.div className="my-6 h-1 w-20 bg-primary" variants={itemVariants} />
-              <motion.p className="mb-8 max-w-md text-base text-muted-foreground" variants={itemVariants}>
+              <motion.div className="my-8 h-1.5 w-24 bg-gradient-to-r from-[var(--rich-cerulean)] to-[var(--icy-blue)]" variants={itemVariants} />
+              <motion.p className="mb-10 max-w-lg text-lg leading-relaxed text-muted-foreground" variants={itemVariants}>
                 {subtitle}
               </motion.p>
               <motion.a
                 href={callToAction.href}
-                className="text-lg font-bold tracking-widest text-primary transition-colors hover:text-primary/80"
+                className="group inline-flex items-center gap-3 text-xl font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-[var(--rich-cerulean)] hover:gap-4"
                 variants={itemVariants}
               >
-                {callToAction.text}
+                <span className="relative">
+                  {callToAction.text}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--rich-cerulean)] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </motion.a>
             </motion.main>
           </div>
 
-          <motion.footer className="mt-12 w-full" variants={itemVariants}>
-            <div className="grid grid-cols-1 gap-6 text-xs text-muted-foreground sm:grid-cols-3">
-              <div className="flex items-center">
-                <InfoIcon type="website" />
-                <span>{contactInfo.website}</span>
+          <motion.footer className="mt-16 w-full" variants={itemVariants}>
+            <div className="grid grid-cols-1 gap-8 text-sm text-muted-foreground sm:grid-cols-3">
+              <div className="flex items-center group">
+                <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
+                  <InfoIcon type="website" />
+                </div>
+                <span className="transition-colors duration-300 group-hover:text-foreground">{contactInfo.website}</span>
               </div>
-              <div className="flex items-center">
-                <InfoIcon type="phone" />
-                <span>{contactInfo.phone}</span>
+              <div className="flex items-center group">
+                <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
+                  <InfoIcon type="phone" />
+                </div>
+                <span className="transition-colors duration-300 group-hover:text-foreground">{contactInfo.phone}</span>
               </div>
-              <div className="flex items-center">
-                <InfoIcon type="address" />
-                <span>{contactInfo.address}</span>
+              <div className="flex items-center group">
+                <div className="mr-3 transition-transform duration-300 group-hover:scale-110">
+                  <InfoIcon type="address" />
+                </div>
+                <span className="transition-colors duration-300 group-hover:text-foreground">{contactInfo.address}</span>
               </div>
             </div>
           </motion.footer>
         </div>
 
-        {/* Right: Image */}
+        {/* Right: Image with gradient overlay */}
         <motion.div
-          className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
+          className="relative w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
           style={{ backgroundImage: `url(${backgroundImage})` }}
           initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
           animate={{ clipPath: 'polygon(25% 0, 100% 0, 100% 100%, 0% 100%)' }}
-          transition={{ duration: 1.2, ease: 'circOut' }}
-        />
+          transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-l from-[var(--prussian-blue)]/20 via-transparent to-transparent" />
+        </motion.div>
       </motion.section>
     );
   }

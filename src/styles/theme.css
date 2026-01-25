@@ -46,7 +46,7 @@
   --chart-3: #172740;
   --chart-4: #A3CBE5;
   --chart-5: #4a5f75;
-  --radius: 0.25rem;
+  --radius: 0.5rem;
   --sidebar: #F5F9FC;
   --sidebar-foreground: #172740;
   --sidebar-primary: #172740;
@@ -145,9 +145,53 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--stone-light);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--warm-grey);
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-bronze);
+  }
+
+  /* Premium selection */
+  ::selection {
+    background: var(--icy-blue);
+    color: var(--prussian-blue);
+  }
+
+  ::-moz-selection {
+    background: var(--icy-blue);
+    color: var(--prussian-blue);
+  }
+
+  /* Premium focus states */
+  *:focus-visible {
+    outline: 2px solid var(--rich-cerulean);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   /**

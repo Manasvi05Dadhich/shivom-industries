@@ -102,9 +102,9 @@ export default function App() {
 
       <button
         onClick={() => setIsRFQOpen(true)}
-        className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-colors shadow-lg z-40"
+        className="group fixed bottom-8 right-8 flex items-center gap-3 px-8 py-5 bg-[var(--muted-bronze)] text-white hover:bg-[var(--deep-charcoal)] transition-all duration-300 shadow-[0_8px_24px_rgba(63,116,162,0.3)] hover:shadow-[0_12px_32px_rgba(23,39,64,0.4)] rounded-lg z-40 hover:scale-105 font-medium"
       >
-        <MessageSquare className="w-5 h-5" />
+        <MessageSquare className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
         <span className="hidden md:inline">Request Quote</span>
       </button>
 

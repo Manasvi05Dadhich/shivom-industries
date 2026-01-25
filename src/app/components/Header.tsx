@@ -40,34 +40,32 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
-        showHeroStyle ? 'bg-transparent border-white/10 backdrop-blur-sm' : 'bg-[var(--prussian-blue)] border-transparent shadow-sm'
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
+        showHeroStyle ? 'bg-transparent border-white/10 backdrop-blur-md' : 'bg-[var(--prussian-blue)] border-transparent shadow-[0_4px_20px_rgba(0,0,0,0.15)] backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-[1800px] mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <button
               onClick={() => onNavigate('Home')}
-              className={`text-xl font-bold transition-colors ${
-                showHeroStyle ? 'text-white hover:text-gray-200' : 'text-white hover:text-gray-200'
-              }`}
+              className="text-xl md:text-2xl font-bold text-white hover:text-[var(--icy-blue)] transition-colors duration-300 tracking-tight"
             >
               Shiv Om Industries
             </button>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-10">
             {navItems.map((item) => (
               <button
                 key={item.page}
                 onClick={() => onNavigate(item.page)}
-                className={`px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-colors ${
+                className={`relative px-4 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300 ${
                   currentPage === item.page
                     ? 'text-[var(--rich-cerulean)] border-[var(--rich-cerulean)]'
-                    : 'text-white hover:text-[var(--icy-blue)]'
+                    : 'text-white/90 hover:text-white hover:border-white/30'
                 }`}
               >
                 {item.label}
@@ -96,8 +94,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-transparent backdrop-blur-sm border-t border-white/10">
+          <div className="md:hidden animate-in slide-in-from-top-2 duration-300">
+            <div className="px-4 pt-4 pb-6 space-y-2 bg-[var(--prussian-blue)]/98 backdrop-blur-md border-t border-white/10 shadow-lg">
               {navItems.map((item) => (
                 <button
                   key={item.page}
@@ -105,10 +103,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                     onNavigate(item.page);
                     setIsMenuOpen(false);
                   }}
-                  className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors ${
+                  className={`block px-4 py-3 text-base font-medium w-full text-left rounded-lg transition-all duration-300 ${
                     currentPage === item.page
-                      ? 'text-[var(--rich-cerulean)] bg-[var(--stone-light)]'
-                      : 'text-[var(--yale-blue)] hover:text-[var(--prussian-blue)] hover:bg-[var(--stone-light)]'
+                      ? 'text-[var(--rich-cerulean)] bg-white/10'
+                      : 'text-white/90 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {item.label}
