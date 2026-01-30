@@ -15,8 +15,8 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: 'basalt-stone',
-    name: 'Basalt Stone',
+    id: 'wall-cladding',
+    name: 'Wall Cladding',
     stoneType: 'Sandstone',
     colorRange: 'Beige, Cream, Light Brown',
     finishOptions: ['Natural', 'Honed', 'Polished', 'Shotblast', 'Bush Hammered'],
@@ -26,11 +26,11 @@ export const products: Product[] = [
     applications: ['Flooring', 'External Paving', 'Wall Cladding', 'Landscape'],
     origin: 'Dholpur, Rajasthan, India',
     description: 'Premium beige sandstone with consistent color and minimal variation. Suitable for both interior and exterior architectural applications.',
-    imageUrl: 'https://images.unsplash.com/photo-1603759641536-f584639f226d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYW5kc3RvbmUlMjB0ZXh0dXJlJTIwYmVpZ2V8ZW58MXx8fHwxNzY5MDA1ODczfDA&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/wallCladings.png'
   },
   {
-    id: 'kandla-grey',
-    name: 'Kandla Grey',
+    id: 'stone-steps',
+    name: 'Stone Steps',
     stoneType: 'Sandstone',
     colorRange: 'Grey, Blue-Grey, Silver',
     finishOptions: ['Natural Split', 'Honed', 'Shotblast', 'Tumbled'],
@@ -40,11 +40,11 @@ export const products: Product[] = [
     applications: ['External Paving', 'Flooring', 'Pool Coping', 'Hardscape'],
     origin: 'Kota, Rajasthan, India',
     description: 'Dense grey sandstone with excellent slip resistance and durability. Ideal for high-traffic exterior applications.',
-    imageUrl: 'https://images.unsplash.com/photo-1634669545806-75b21288cdc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdG9uZSUyMHRleHR1cmUlMjBncmV5fGVufDF8fHx8MTc2OTAwNTg3NHww&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/stoneSteps.png'
   },
   {
-    id: 'manadana-red',
-    name: 'Mandana Red',
+    id: 'steppings',
+    name: 'Steppings',
     stoneType: 'Sandstone',
     colorRange: 'Red, Pink, Burgundy',
     finishOptions: ['Natural', 'Honed', 'Polished', 'Shotblast'],
@@ -54,11 +54,11 @@ export const products: Product[] = [
     applications: ['Wall Cladding', 'Flooring', 'Landscape', 'Feature Walls'],
     origin: 'Agra, Rajasthan, India',
     description: 'Distinctive red sandstone with warm tones. Popular for architectural accents and traditional Indian aesthetics.',
-    imageUrl: 'https://images.unsplash.com/photo-1648639035105-6bce23c55b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc2OTAwNTg3NHww&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/steppings.png'
   },
   {
-    id: 'autumn-brown',
-    name: 'Autumn Brown',
+    id: 'cobbles',
+    name: 'Cobbles',
     stoneType: 'Sandstone',
     colorRange: 'Green, Mint, Grey-Green',
     finishOptions: ['Natural Split', 'Honed', 'Shotblast'],
@@ -68,11 +68,11 @@ export const products: Product[] = [
     applications: ['External Paving', 'Landscape', 'Garden Features', 'Pool Surrounds'],
     origin: 'Jodhpur, Rajasthan, India',
     description: 'Unique green-toned sandstone with excellent weather resistance. Suitable for landscape and garden applications.',
-    imageUrl: 'https://images.unsplash.com/photo-1551458601-14e8150ece4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxxdWFycnklMjBzdG9uZSUyMGJsb2Nrc3xlbnwxfHx8fDE3NjkwMDU4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/cobbles.png'
   },
   {
-    id: 'raj-green',
-    name: 'Raj Green',
+    id: 'pavers',
+    name: 'Pavers',
     stoneType: 'Sandstone',
     colorRange: 'Green, Brown, Multi-color',
     finishOptions: ['Natural Split', 'Shotblast', 'Tumbled'],
@@ -82,11 +82,11 @@ export const products: Product[] = [
     applications: ['External Paving', 'Driveways', 'Pathways', 'Garden Features'],
     origin: 'Kota, Rajasthan, India',
     description: 'Multi-colored sandstone with natural variation. Popular for traditional and contemporary landscape designs.',
-    imageUrl: 'https://images.unsplash.com/photo-1762200057530-73e7a7990daa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdG9uZSUyMHBhdmluZyUyMG91dGRvb3J8ZW58MXx8fHwxNzY5MDA1ODc1fDA&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/pavers.png'
   },
   {
-    id: 'snow-white',
-    name: 'Snow White',
+    id: 'circular',
+    name: 'Circular',
     stoneType: 'Limestone',
     colorRange: 'Yellow, Gold, Beige',
     finishOptions: ['Honed', 'Polished', 'Brushed', 'Tumbled'],
@@ -96,7 +96,7 @@ export const products: Product[] = [
     applications: ['Flooring', 'Wall Cladding', 'Interior Design', 'Countertops'],
     origin: 'Jaisalmer, Rajasthan, India',
     description: 'Premium limestone with warm golden tones. Ideal for high-end interior and exterior applications.',
-    imageUrl: 'https://images.unsplash.com/photo-1708694812044-1cb79c9fb256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdG9uZSUyMHdhbGwlMjBjbGFkZGluZ3xlbnwxfHx8fDE3NjkwMDU4NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
+    imageUrl: '/dist/images/circular.png'
   }
 ];
 
