@@ -72,12 +72,12 @@ export function Footer() {
               Product Range
             </h4>
             <ul className="space-y-3 text-base text-white/70">
-              <li>Basalt Stone</li>
-              <li>Kandla Grey</li>
-              <li>Mandana Red</li>
-              <li>Autumn Brown</li>
-              <li>Raj Green</li>
-              <li>Snow White</li>
+              <li>Wall Claddings</li>
+              <li>Stone Steps</li>
+              <li>Steppings</li>
+              <li>Pavers</li>
+              <li>Cobbles</li>
+              <li>Circulars</li>
             </ul>
           </div>
 

@@ -85,7 +85,7 @@ export function Hero({ onNavigate }: HeroProps) {
 
           {/* HEADLINE */}
           <h1
-            className={`font-['Playfair_Display'] text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-tight transition-all duration-700 ease-out
+            className={`font-['Cormorant_Garamond'] text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-tight transition-all duration-700 ease-out
               ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
             `}
             style={{ transitionDelay: '200ms' }}

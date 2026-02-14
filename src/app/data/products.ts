@@ -85,9 +85,9 @@ export const products: Product[] = [
     imageUrl: '/dist/images/pavers.png'
   },
   {
-    id: 'circular',
-    name: 'Circular',
-    stoneType: 'Limestone',
+    id: 'circular-design',
+    name: 'Circular Design',
+    stoneType: 'Sandstone',
     colorRange: 'Yellow, Gold, Beige',
     finishOptions: ['Honed', 'Polished', 'Brushed', 'Tumbled'],
     standardSizes: ['400x400mm', '600x400mm', '600x600mm', 'Custom'],
@@ -109,32 +109,32 @@ export interface ProductInRange {
 
 /** Products in each range. Replace with your names and image URLs. */
 export const productsInRange: Record<string, ProductInRange[]> = {
-  'basalt-stone': [
+  'wall-clading': [
     { id: 'basalt-stone-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1603759641536-f584639f226d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'basalt-stone-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1603759641536-f584639f226d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'basalt-stone-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1603759641536-f584639f226d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
   ],
-  'kandla-grey': [
+  'stone-steps': [
     { id: 'kandla-grey-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1634669545806-75b21288cdc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'kandla-grey-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1634669545806-75b21288cdc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'kandla-grey-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1634669545806-75b21288cdc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
   ],
-  'manadana-red': [
+  'steppings': [
     { id: 'manadana-red-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1648639035105-6bce23c55b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'manadana-red-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1648639035105-6bce23c55b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'manadana-red-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1648639035105-6bce23c55b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
   ],
-  'autumn-brown': [
+  'cobbles': [
     { id: 'autumn-brown-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1551458601-14e8150ece4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'autumn-brown-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1551458601-14e8150ece4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'autumn-brown-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1551458601-14e8150ece4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
   ],
-  'raj-green': [
+  'pavers': [
     { id: 'raj-green-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1762200057530-73e7a7990daa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'raj-green-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1762200057530-73e7a7990daa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'raj-green-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1762200057530-73e7a7990daa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
   ],
-  'snow-white': [
+  'circular-ssign': [
     { id: 'snow-white-1', name: 'Product 1 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1708694812044-1cb79c9fb256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'snow-white-2', name: 'Product 2 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1708694812044-1cb79c9fb256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
     { id: 'snow-white-3', name: 'Product 3 (placeholder)', imageUrl: 'https://images.unsplash.com/photo-1708694812044-1cb79c9fb256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080' },
